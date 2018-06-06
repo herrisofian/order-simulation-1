@@ -1,5 +1,5 @@
 # Order Simulation
-Aplikasi Order Simulation Project mempunyai 2 jenis user Login: `User` dan `Driver`. Aplikasi memiliki 1 `User` dan 2 `Driver`.
+Aplikasi Order Simulation mempunyai 2 jenis user Login: `User` dan `Driver`. Aplikasi memiliki 1 `User` dan 2 `Driver`.
 `User` melakukan pesanan dan `Driver` mengambil pesanan untuk diantar ke alamat tujuan. Apabila pesanan telah diambil oleh salah satu `Driver`, maka `Driver` lain sudah tidak bisa mengambil order yang sama.
 
 
@@ -21,7 +21,7 @@ Aplikasi Order Simulation Project mempunyai 2 jenis user Login: `User` dan `Driv
 ![alt text](https://github.com/lincgroup/order-simulation/raw/master/images/5-driver-job-created.png "Driver Job Created")
 
 ### 5b. Driver lain yang login sudah tidak dapat melihat order yang telah diambil oleh driver pertama
-![alt text](https://github.com/lincgroup/order-simulation/raw/master/images/5-driver-other-dont-see-order "Other Driver Don't See Taken Order")
+![alt text](https://github.com/lincgroup/order-simulation/raw/master/images/5-driver-other-dont-see-order.png "Other Driver Don't See Taken Order")
 
 ### 6. Driver siap untuk berangkat dan mengubah status order menjadi "On Delivery"
 ![alt text](https://github.com/lincgroup/order-simulation/raw/master/images/6-driver-on-delivery.png "Driver On Delivery")
@@ -30,6 +30,6 @@ Aplikasi Order Simulation Project mempunyai 2 jenis user Login: `User` dan `Driv
 ![alt text](https://github.com/lincgroup/order-simulation/raw/master/images/7-driver-order-delivered.png "Driver Job Created")
 
 ## Data Diagram
-Aplikasi Order Simulation Project ini mempunyai struktur data sebagai berikut:
+Aplikasi Order Simulation ini mempunyai struktur data sebagai berikut:
 
 ![alt text](https://github.com/lincgroup/order-simulation/raw/master/images/0-data-diagram.png "Data Diagram")
