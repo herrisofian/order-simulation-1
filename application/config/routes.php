@@ -52,4 +52,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
 $route['API'] = 'Rest_server';
+
+// USER API ROUTES
+$route['api/user/login'] = 'users/Users/user_login';
+$route['api/user/get'] = 'users/Users/user_fetch';
+
+// ITEM API ROUTES
+$route['api/products/get'] = 'products/Products/index';
+
+// ORDER API ROUTES
