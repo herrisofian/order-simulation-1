@@ -29,18 +29,22 @@
                         </thead>
                         <tbody>
                           <?php
-                            foreach($items as $item):
-                            ?>
-                                <tr>
-                                    <td><?php echo $item["id"]?></td>
-                                    <td><?php echo $item["sku"]?></td>
-                                    <td><?php echo $item["name"]?></td>
-                                    <td><?php echo $item["description"]?></td>
-                                    <td><?php echo $item["price"]?></td>
-                                    <td><button data-id-item="<?php echo $item["id"]?>" class="btn btn-success">Order</button></td>
-                                </tr>
-                            <?php
-                            endforeach;
+                            if($items != ''):
+                                foreach($items as $item):
+                                ?>
+                                    <tr>
+                                        <td><?php echo $item["id"]?></td>
+                                        <td><?php echo $item["sku"]?></td>
+                                        <td><?php echo $item["name"]?></td>
+                                        <td><?php echo $item["description"]?></td>
+                                        <td><?php echo $item["price"]?></td>
+                                        <td><button data-id-item="<?php echo $item["id"]?>" class="btn btn-success">Order</button></td>
+                                    </tr>
+                                <?php
+                                endforeach;
+                            else:
+                                echo 'Tidak ada item';
+                            endif;
                           ?>
                         </tbody>
                       </table>
@@ -62,18 +66,22 @@
                         </thead>
                         <tbody>
                           <?php
-                            $count = 1;
-                            foreach($orders as $order):
-                            ?>
-                                <tr>
-                                    <td><?php echo $count?></td>
-                                    <td><?php echo $order["name"]?></td>
-                                    <td><?php echo $order["username"]?></td>
-                                    <td>Order Created at <?php echo $order["statusdatetime"]?></td>
-                                </tr>
-                            <?php
-                            $count++;
-                            endforeach;
+                            if($orders != ''):
+                                $count = 1;
+                                foreach($orders as $order):
+                                ?>
+                                    <tr>
+                                        <td><?php echo $count?></td>
+                                        <td><?php echo $order["name"]?></td>
+                                        <td><?php echo $order["username"]?></td>
+                                        <td>Order Created at <?php echo $order["statusdatetime"]?></td>
+                                    </tr>
+                                <?php
+                                $count++;
+                                endforeach;
+                            else:
+                                echo 'Tidak ada yang di order';
+                            endif;
                           ?>
                         </tbody>
                       </table>

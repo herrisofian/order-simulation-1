@@ -30,4 +30,26 @@ class Orders_model extends CI_Model {
             return false;
         endif;
     }
+     public function getOrdersDriver(){
+        $this->db->select('orders.id, item.name, orderstatus.statusdatetime, orders.address');
+        $this->db->from('orders orders');
+        $this->db->join('driver driver','driver.id = orders.id_driver','Left');
+        $this->db->join('orderstatus orderstatus','orderstatus.id_order = orders.id');
+        $this->db->join('item item','item.id = orders.id_item');
+        $this->db->where('orders.id_driver',0);
+        $query = $this->db->get();
+        if($query->num_rows() > 0):
+           foreach($query->result() as $row):
+                    $data[] = $row;
+            endforeach;
+            return $data;
+        else:
+            return false;
+        endif;
+    }
+    public function updateDriverOrders($id_orders,$id_drivers){
+        $this->db->set('id_driver', $id_drivers);
+        $this->db->where('id',$id_orders);
+        $this->db->update('orders'); 
+    }     
 }

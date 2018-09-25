@@ -11,6 +11,7 @@ class Orders extends REST_Controller {
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('orders_model');
+        $this->load->model('drivers_model');
     }
     public function index_post(){
         
@@ -48,6 +49,17 @@ class Orders extends REST_Controller {
         $id_user = $this->post('iduser');
         $dataOrders = $this->orders_model->getOrdersUser($id_user);
         $this->response($dataOrders);
+    }
+    
+     public function driver_take_orders_post()
+    {
+        header('Access-Control-Allow-Origin: *');
+        $id_order = $this->post('idorder');
+        $id_driver = $this->post('iddriver');
+                
+        // Updating orders table set id driver = parameter id driver
+        $this->orders_model->updateDriverOrders($id_order,$id_driver);      
+        $this->response('SUCCESS');
     }
    
 }

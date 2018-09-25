@@ -11,20 +11,21 @@ class Drivers extends REST_Controller {
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('drivers_model');
+        $this->load->model('orders_model');
     }
     public function index_get(){
         
     }
     /*
     * @method:GET
+    * Link routes:api/driver/orders
     */
-    public function user_fetch_get()
+    public function driver_orders_get()
     {
         header('Access-Control-Allow-Origin: *');
-        $data = $this->users_model->getUserData();
+        $data = $this->orders_model->getOrdersDriver();
         $this->response($data);
     }
-    
     /*
     * @method:POST
     */
@@ -42,5 +43,6 @@ class Drivers extends REST_Controller {
         endif;
         
     }
+    
    
 }

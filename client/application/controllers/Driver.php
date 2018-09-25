@@ -49,7 +49,7 @@ class Driver extends CI_Controller {
 		if($logined_user == TRUE):
             $curl = curl_init();
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://localhost/order-simulation-1/server/index.php/api/products/get",
+            CURLOPT_URL => "http://localhost/order-simulation-1/server/index.php/api/driver/orders",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -61,24 +61,22 @@ class Driver extends CI_Controller {
             $response_items = json_decode(curl_exec($curl),TRUE);
             $err = curl_error($curl);
             curl_close($curl);
-            $data["orders"] = $this->getDataOrders($this->session->userdata('iduser'));
-            $data["items"] = $response_items;
+            $data["orders"] = $response_items;
             $this->load->view('driver_orders', $data);
         else:    
             redirect(base_url());
         endif;        
     }
-    public function ordersPost(){
-        $url = "http://localhost/order-simulation-1/server/index.php/api/orders/post";
-        $id_item = $this->input->post('id');
-        $address = $this->input->post('address');
-        $id_user = $this->session->userdata('iduser');
+    public function takeOrders(){
+        $url = "http://localhost/order-simulation-1/server/index.php/api/driver/take_orders";
+        $id_order = $this->input->post('id');
+        $id_driver = $this->session->userdata('iduser');
         $data = array(
-            "iditem"=>$id_item,
-            "address"=>$address,
-            "iduser"=>$id_user
+            "idorder"=>$id_order,
+            "iddriver"=>$id_driver
         );
         $datastring = json_encode($data);
+
 		$curl = curl_init($url); 
 		curl_setopt($curl , CURLOPT_URL, $url);
 		curl_setopt($curl , CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
@@ -88,6 +86,9 @@ class Driver extends CI_Controller {
     	curl_setopt($curl, CURLOPT_POSTFIELDS, $datastring); 
     	$curl_response = json_decode(curl_exec($curl));
         curl_close($curl);
+        echo $curl_response;
+        exit;
+        
         $returndata["message"] = "Success Orders";
         $returndata["status"] = 1;
         echo json_encode($returndata);   
