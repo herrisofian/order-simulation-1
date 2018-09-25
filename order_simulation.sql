@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2018 at 10:32 AM
+-- Generation Time: Sep 25, 2018 at 09:36 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.0.31
 
@@ -81,7 +81,7 @@ CREATE TABLE `orders` (
   `id_item` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_driver` int(11) NOT NULL,
-  `orderstatuses` int(11) NOT NULL
+  `orderstatuses` longtext COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -110,6 +110,16 @@ CREATE TABLE `status` (
   `orderStatuses` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `orderDrivers` longtext COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id`, `code`, `description`, `orderStatuses`, `orderDrivers`) VALUES
+(1, 123, 'Created', '', ''),
+(2, 234, 'Taken By Driver', '', ''),
+(3, 345, 'Order on Delivery', '', ''),
+(4, 456, 'Order Delivered', '', '');
 
 -- --------------------------------------------------------
 
@@ -192,19 +202,19 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orderstatus`
 --
 ALTER TABLE `orderstatus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
