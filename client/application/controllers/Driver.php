@@ -62,6 +62,7 @@ class Driver extends CI_Controller {
             $err = curl_error($curl);
             curl_close($curl);
             $data["orders"] = $response_items;
+            $data["orders_history"] = $this->getDriverOrdersHistory($this->session->userdata('iduser'));
             $this->load->view('driver_orders', $data);
         else:    
             redirect(base_url());
@@ -86,9 +87,57 @@ class Driver extends CI_Controller {
     	curl_setopt($curl, CURLOPT_POSTFIELDS, $datastring); 
     	$curl_response = json_decode(curl_exec($curl));
         curl_close($curl);
-        echo $curl_response;
+      
+        $returndata["message"] = "Success Orders";
+        $returndata["status"] = 1;
+        echo json_encode($returndata);   
         exit;
         
+    }
+    public function onDeliveryOrders(){
+       $url = "http://localhost/order-simulation-1/server/index.php/api/driver/orders_delivery";
+        $id_order = $this->input->post('id');
+        $id_driver = $this->session->userdata('iduser');
+        $data = array(
+            "idorder"=>$id_order,
+            "iddriver"=>$id_driver
+        );
+        $datastring = json_encode($data);
+		$curl = curl_init($url); 
+		curl_setopt($curl , CURLOPT_URL, $url);
+		curl_setopt($curl , CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        //curl_setopt($curl , CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+    	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
+    	curl_setopt($curl, CURLOPT_POST, true); 
+    	curl_setopt($curl, CURLOPT_POSTFIELDS, $datastring); 
+    	$curl_response = json_decode(curl_exec($curl));
+        curl_close($curl);
+      
+        $returndata["message"] = "Success Orders";
+        $returndata["status"] = 1;
+        echo json_encode($returndata);   
+        exit;
+        
+    }
+    public function onDeliveredOrders(){
+       $url = "http://localhost/order-simulation-1/server/index.php/api/driver/orders_delivered";
+        $id_order = $this->input->post('id');
+        $id_driver = $this->session->userdata('iduser');
+        $data = array(
+            "idorder"=>$id_order,
+            "iddriver"=>$id_driver
+        );
+        $datastring = json_encode($data);
+		$curl = curl_init($url); 
+		curl_setopt($curl , CURLOPT_URL, $url);
+		curl_setopt($curl , CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        //curl_setopt($curl , CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+    	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
+    	curl_setopt($curl, CURLOPT_POST, true); 
+    	curl_setopt($curl, CURLOPT_POSTFIELDS, $datastring); 
+    	$curl_response = json_decode(curl_exec($curl));
+        curl_close($curl);
+      
         $returndata["message"] = "Success Orders";
         $returndata["status"] = 1;
         echo json_encode($returndata);   
@@ -105,10 +154,10 @@ class Driver extends CI_Controller {
 		);
 		$this->session->set_userdata($newdata);
 	}
-    private function getDataOrders($id_user){
-        $url = "http://localhost/order-simulation-1/server/index.php/api/ordershistory/post";
+    private function getDriverOrdersHistory($id_driver){
+        $url = "http://localhost/order-simulation-1/server/index.php/api/driver/orders_history";
         $data = array(
-            "iduser"=>$id_user
+            "iddriver"=>$id_driver
         );
         $datastring = json_encode($data);
 		$curl = curl_init($url); 

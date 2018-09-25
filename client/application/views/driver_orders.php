@@ -35,7 +35,22 @@
                                         <td><?php echo $order["id"]?></td>
                                         <td><?php echo $order["name"]?></td>
                                         <td><?php echo $order["address"]?></td>
-                                        <td><?php echo $order["statusdatetime"]?></td>
+                                        <td>
+                                            <ul>
+                                        <?php
+                                            $statuses = json_decode($order["orderstatuses"], TRUE);
+                                            if($statuses != ''):
+                                                foreach($statuses as $status):
+                                                ?>
+                                                    <li><?php echo $status?></li>
+                                                <?php
+                                                endforeach;
+                                            else:
+                                                echo 'No Status';
+                                            endif;
+                                        ?>
+                                            </ul>
+                                        </td>
                                         <td><button data-id-order="<?php echo $order["id"]?>" class="btn btn-success">Take</button></td>
                                     </tr>
                                 <?php
@@ -63,7 +78,54 @@
                           </tr>
                         </thead>
                         <tbody>
-                          
+                            <?php
+                            if($orders_history != ''):
+                                foreach($orders_history as $order_take):
+                                ?>
+                                    <tr>
+                                        <td><?php echo $order_take["id"]?></td>
+                                        <td><?php echo $order_take["name"]?></td>
+                                        <td><?php echo $order_take["address"]?></td>
+                                        <td>
+                                            <ul>
+                                        <?php
+                                            $statuses = json_decode($order_take["orderstatuses"], TRUE);
+                                            if($statuses != ''):
+                                                foreach($statuses as $status):
+                                                ?>
+                                                    <li><?php echo $status?></li>
+                                                <?php
+                                                endforeach;
+                                            else:
+                                                echo 'No Status';
+                                            endif;
+                                        ?>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                if($order_take["id_status"] == 2):
+                                                ?>
+                                                    <button data-id-order="<?php echo $order_take["id"]?>" class="btn btn-info btn-delivery">Change to Delivery</button>
+                                                <?php
+                                                elseif($order_take["id_status"] == 3):
+                                                ?>
+                                                    <button data-id-order="<?php echo $order_take["id"]?>" class="btn btn-info btn-delivered">Change to Delivered</button>
+                                                <?php
+                                                else:
+                                                    echo '';
+                                                endif;
+                                            ?>
+                                       
+                                        
+                                        </td>
+                                    </tr>
+                                <?php
+                                endforeach;
+                            else:
+                               echo 'Tidak ada order';
+                            endif;
+                          ?>
                         </tbody>
                       </table>
                   </div>
@@ -85,9 +147,39 @@
                         dataType: "json",
                         data: {"id":id_order},
                         success:function(response) {
-                           /*if(response.status != 0){
+                           if(response.status != 0){
                                top.location.href= url+"index.php/driver/orders";
-                           }*/
+                           }
+                        }
+                    });
+                });
+                $('.btn-delivery').on("click", function(e){
+                    var id_order = $(this).attr('data-id-order');
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: url + "index.php/driver/ondelivery",
+                        dataType: "json",
+                        data: {"id":id_order},
+                        success:function(response) {
+                           if(response.status != 0){
+                               top.location.href= url+"index.php/driver/orders";
+                           }
+                        }
+                    });
+                });
+                $('.btn-delivered').on("click", function(e){
+                    var id_order = $(this).attr('data-id-order');
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: url + "index.php/driver/ordersDelivered",
+                        dataType: "json",
+                        data: {"id":id_order},
+                        success:function(response) {
+                           if(response.status != 0){
+                               top.location.href= url+"index.php/driver/orders";
+                           }
                         }
                     });
                 });

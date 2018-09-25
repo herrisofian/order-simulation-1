@@ -68,6 +68,9 @@ $route['api/products/get'] = 'products/Products/index';
 $route['api/orders/post'] = 'orders/Orders/order';
 $route['api/ordershistory/post'] = 'orders/Orders/order_history';
 $route['api/driver/take_orders'] = 'orders/Orders/driver_take_orders';
+$route['api/driver/orders_history'] = 'orders/Orders/orders_driver';
+$route['api/driver/orders_delivery'] = 'orders/Orders/driver_delivery';
+$route['api/driver/orders_delivered'] = 'orders/Orders/driver_delivered';
 
 // NEW ORDERS DRIVER 
 $route['api/driver/orders'] = 'drivers/Drivers/driver_orders';

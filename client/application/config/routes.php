@@ -58,3 +58,5 @@ $route['driver/login'] = 'driver';
 $route['driver/dologin'] = 'driver/login';
 $route['driver/orders'] = 'driver/getOrders';
 $route['driver/takeorders'] = 'driver/takeOrders';
+$route['driver/ondelivery'] = 'driver/onDeliveryOrders';
+$route['driver/ordersDelivered'] = 'driver/onDeliveredOrders';

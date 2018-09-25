@@ -74,7 +74,22 @@
                                         <td><?php echo $count?></td>
                                         <td><?php echo $order["name"]?></td>
                                         <td><?php echo $order["username"]?></td>
-                                        <td>Order Created at <?php echo $order["statusdatetime"]?></td>
+                                        <td>
+                                            <ul>
+                                        <?php
+                                            $statuses = json_decode($order["orderstatuses"], TRUE);
+                                            if($statuses != ''):
+                                                foreach($statuses as $status):
+                                                ?>
+                                                    <li><?php echo $status?></li>
+                                                <?php
+                                                endforeach;
+                                            else:
+                                                echo 'No Status';
+                                            endif;
+                                        ?>
+                                            </ul>
+                                        </td>
                                     </tr>
                                 <?php
                                 $count++;
