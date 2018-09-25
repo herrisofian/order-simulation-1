@@ -60,3 +60,4 @@ $route['driver/orders'] = 'driver/getOrders';
 $route['driver/takeorders'] = 'driver/takeOrders';
 $route['driver/ondelivery'] = 'driver/onDeliveryOrders';
 $route['driver/ordersDelivered'] = 'driver/onDeliveredOrders';
+$route['logout'] = 'logout';

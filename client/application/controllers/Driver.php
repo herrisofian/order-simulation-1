@@ -63,6 +63,7 @@ class Driver extends CI_Controller {
             curl_close($curl);
             $data["orders"] = $response_items;
             $data["orders_history"] = $this->getDriverOrdersHistory($this->session->userdata('iduser'));
+            $data["username"] = $this->session->userdata("username");
             $this->load->view('driver_orders', $data);
         else:    
             redirect(base_url());

@@ -13,95 +13,104 @@
     <body>
         <div class="wrapper">
             <div class="container">
-                <div class="panel panel-default">
-                  <div class="panel-heading">List Item</div>
-                  <div class="panel-body">
-                     <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>SKU</th>
-                            <th>Name</th>
-                            <th>Desc</th>
-                            <th>Price</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                            if($items != ''):
-                                foreach($items as $item):
-                                ?>
-                                    <tr>
-                                        <td><?php echo $item["id"]?></td>
-                                        <td><?php echo $item["sku"]?></td>
-                                        <td><?php echo $item["name"]?></td>
-                                        <td><?php echo $item["description"]?></td>
-                                        <td><?php echo $item["price"]?></td>
-                                        <td><button data-id-item="<?php echo $item["id"]?>" class="btn btn-success">Order</button></td>
-                                    </tr>
-                                <?php
-                                endforeach;
-                            else:
-                                echo 'Tidak ada item';
-                            endif;
-                          ?>
-                        </tbody>
-                      </table>
-                  </div>
+                <div class="row" style="margin-top:30px;">
+                    <div class="dropdown pull-right">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username?>
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url('index.php/logout')?>">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-            
-              <div class="panel panel-default">
-                  <div class="panel-heading">Order List</div>
-                  <div class="panel-body">
-                    <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Item Name</th>
-                            <th>Driver</th>
-                            <th>Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                            if($orders != ''):
-                                $count = 1;
-                                foreach($orders as $order):
-                                ?>
-                                    <tr>
-                                        <td><?php echo $count?></td>
-                                        <td><?php echo $order["name"]?></td>
-                                        <td><?php echo $order["username"]?></td>
-                                        <td>
-                                            <ul>
-                                        <?php
-                                            $statuses = json_decode($order["orderstatuses"], TRUE);
-                                            if($statuses != ''):
-                                                foreach($statuses as $status):
-                                                ?>
-                                                    <li><?php echo $status?></li>
-                                                <?php
-                                                endforeach;
-                                            else:
-                                                echo 'No Status';
-                                            endif;
-                                        ?>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                <?php
-                                $count++;
-                                endforeach;
-                            else:
-                                echo 'Tidak ada yang di order';
-                            endif;
-                          ?>
-                        </tbody>
-                      </table>
-                  </div>
-                </div>             
+                <div class="row" style="margin-top:30px;">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">List Item</div>
+                      <div class="panel-body">
+                         <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>SKU</th>
+                                <th>Name</th>
+                                <th>Desc</th>
+                                <th>Price</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php
+                                if($items != ''):
+                                    foreach($items as $item):
+                                    ?>
+                                        <tr style="height:30px">
+                                            <td valign="middle"><?php echo $item["id"]?></td>
+                                            <td valign="middle"><?php echo $item["sku"]?></td>
+                                            <td valign="middle"><?php echo $item["name"]?></td>
+                                            <td valign="middle"><?php echo $item["description"]?></td>
+                                            <td valign="middle"><?php echo $item["price"]?></td>
+                                            <td valign="middle"><button data-id-item="<?php echo $item["id"]?>" class="btn btn-success">Order</button></td>
+                                        </tr>
+                                    <?php
+                                    endforeach;
+                                else:
+                                    echo 'Tidak ada item';
+                                endif;
+                              ?>
+                            </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">Order List</div>
+                      <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Item Name</th>
+                                <th>Driver</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php
+                                if($orders != ''):
+                                    $count = 1;
+                                    foreach($orders as $order):
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $count?></td>
+                                            <td><?php echo $order["name"]?></td>
+                                            <td><?php echo $order["username"]?></td>
+                                            <td>
+                                                <ul>
+                                            <?php
+                                                $statuses = json_decode($order["orderstatuses"], TRUE);
+                                                if($statuses != ''):
+                                                    foreach($statuses as $status):
+                                                    ?>
+                                                        <li><?php echo $status?></li>
+                                                    <?php
+                                                    endforeach;
+                                                else:
+                                                    echo 'No Status';
+                                                endif;
+                                            ?>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    $count++;
+                                    endforeach;
+                                else:
+                                    echo 'Tidak ada yang di order';
+                                endif;
+                              ?>
+                            </tbody>
+                          </table>
+                      </div>
+                    </div> 
+                </div>                  
             </div>
         </div>  
         <script>

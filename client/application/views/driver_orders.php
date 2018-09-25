@@ -13,122 +13,131 @@
     <body>
         <div class="wrapper">
             <div class="container">
-                <div class="panel panel-default">
-                  <div class="panel-heading">New orders</div>
-                  <div class="panel-body">
-                     <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Item Name</th>
-                            <th>Address</th>
-                            <th>Status</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                            if($orders != ''):
-                                foreach($orders as $order):
-                                ?>
-                                    <tr>
-                                        <td><?php echo $order["id"]?></td>
-                                        <td><?php echo $order["name"]?></td>
-                                        <td><?php echo $order["address"]?></td>
-                                        <td>
-                                            <ul>
-                                        <?php
-                                            $statuses = json_decode($order["orderstatuses"], TRUE);
-                                            if($statuses != ''):
-                                                foreach($statuses as $status):
-                                                ?>
-                                                    <li><?php echo $status?></li>
-                                                <?php
-                                                endforeach;
-                                            else:
-                                                echo 'No Status';
-                                            endif;
-                                        ?>
-                                            </ul>
-                                        </td>
-                                        <td><button data-id-order="<?php echo $order["id"]?>" class="btn btn-success">Take</button></td>
-                                    </tr>
-                                <?php
-                                endforeach;
-                            else:
-                               echo 'Tidak ada order';
-                            endif;
-                          ?>
-                        </tbody>
-                      </table>
-                  </div>
+                <div class="row" style="margin-top:30px;">
+                    <div class="dropdown pull-right">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username?>
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url('index.php/logout')?>">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-            
-              <div class="panel panel-default">
-                  <div class="panel-heading">Order List</div>
-                  <div class="panel-body">
-                    <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Item Name</th>
-                            <th>Driver</th>
-                            <th>Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if($orders_history != ''):
-                                foreach($orders_history as $order_take):
-                                ?>
-                                    <tr>
-                                        <td><?php echo $order_take["id"]?></td>
-                                        <td><?php echo $order_take["name"]?></td>
-                                        <td><?php echo $order_take["address"]?></td>
-                                        <td>
-                                            <ul>
-                                        <?php
-                                            $statuses = json_decode($order_take["orderstatuses"], TRUE);
-                                            if($statuses != ''):
-                                                foreach($statuses as $status):
-                                                ?>
-                                                    <li><?php echo $status?></li>
-                                                <?php
-                                                endforeach;
-                                            else:
-                                                echo 'No Status';
-                                            endif;
-                                        ?>
-                                            </ul>
-                                        </td>
-                                        <td>
+                <div class="row" style="margin-top:30px;">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">New orders</div>
+                      <div class="panel-body">
+                         <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Item Name</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php
+                                if($orders != ''):
+                                    foreach($orders as $order):
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $order["id"]?></td>
+                                            <td><?php echo $order["name"]?></td>
+                                            <td><?php echo $order["address"]?></td>
+                                            <td>
+                                                <ul>
                                             <?php
-                                                if($order_take["id_status"] == 2):
-                                                ?>
-                                                    <button data-id-order="<?php echo $order_take["id"]?>" class="btn btn-info btn-delivery">Change to Delivery</button>
-                                                <?php
-                                                elseif($order_take["id_status"] == 3):
-                                                ?>
-                                                    <button data-id-order="<?php echo $order_take["id"]?>" class="btn btn-info btn-delivered">Change to Delivered</button>
-                                                <?php
+                                                $statuses = json_decode($order["orderstatuses"], TRUE);
+                                                if($statuses != ''):
+                                                    foreach($statuses as $status):
+                                                    ?>
+                                                        <li><?php echo $status?></li>
+                                                    <?php
+                                                    endforeach;
                                                 else:
-                                                    echo '';
+                                                    echo 'No Status';
                                                 endif;
                                             ?>
-                                       
-                                        
-                                        </td>
-                                    </tr>
+                                                </ul>
+                                            </td>
+                                            <td><button data-id-order="<?php echo $order["id"]?>" class="btn btn-success">Take</button></td>
+                                        </tr>
+                                    <?php
+                                    endforeach;
+                                else:
+                                   echo 'Tidak ada order';
+                                endif;
+                              ?>
+                            </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">Order List</div>
+                      <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Item Name</th>
+                                <th>Driver</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
                                 <?php
-                                endforeach;
-                            else:
-                               echo 'Tidak ada order';
-                            endif;
-                          ?>
-                        </tbody>
-                      </table>
-                  </div>
+                                if($orders_history != ''):
+                                    foreach($orders_history as $order_take):
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $order_take["id"]?></td>
+                                            <td><?php echo $order_take["name"]?></td>
+                                            <td><?php echo $order_take["address"]?></td>
+                                            <td>
+                                                <ul>
+                                            <?php
+                                                $statuses = json_decode($order_take["orderstatuses"], TRUE);
+                                                if($statuses != ''):
+                                                    foreach($statuses as $status):
+                                                    ?>
+                                                        <li><?php echo $status?></li>
+                                                    <?php
+                                                    endforeach;
+                                                else:
+                                                    echo 'No Status';
+                                                endif;
+                                            ?>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                    if($order_take["id_status"] == 2):
+                                                    ?>
+                                                        <button data-id-order="<?php echo $order_take["id"]?>" class="btn btn-info btn-delivery">Change to Delivery</button>
+                                                    <?php
+                                                    elseif($order_take["id_status"] == 3):
+                                                    ?>
+                                                        <button data-id-order="<?php echo $order_take["id"]?>" class="btn btn-info btn-delivered">Change to Delivered</button>
+                                                    <?php
+                                                    else:
+                                                        echo '';
+                                                    endif;
+                                                ?>
+                                           
+                                            
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    endforeach;
+                                else:
+                                   echo 'Tidak ada order';
+                                endif;
+                              ?>
+                            </tbody>
+                          </table>
+                      </div>
+                    </div>             
                 </div>             
             </div>
         </div>  

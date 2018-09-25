@@ -62,6 +62,7 @@ class Welcome extends CI_Controller {
             curl_close($curl);
             $data["orders"] = $this->getDataOrders($this->session->userdata('iduser'));
             $data["items"] = $response_items;
+            $data["username"] = $this->session->userdata("username");
             $this->load->view('orders', $data);
         else:    
             redirect(base_url());
