@@ -13,60 +13,72 @@
     <body>
         <div class="wrapper">
             <div class="container">
-               <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>SKU</th>
-                    <th>Name</th>
-                    <th>Desc</th>
-                    <th>Price</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    foreach($items as $item):
-                    ?>
-                        <tr>
-                            <td><?php echo $item["id"]?></td>
-                            <td><?php echo $item["sku"]?></td>
-                            <td><?php echo $item["name"]?></td>
-                            <td><?php echo $item["description"]?></td>
-                            <td><?php echo $item["price"]?></td>
-                            <td><button data-id-item="<?php echo $item["id"]?>" class="btn btn-success">Order</button></td>
-                        </tr>
-                    <?php
-                    endforeach;
-                  ?>
-                </tbody>
-              </table>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Item Name</th>
-                    <th>Driver</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    $count = 1;
-                    foreach($orders as $order):
-                    ?>
-                        <tr>
-                            <td><?php echo $count?></td>
-                            <td><?php echo $order["name"]?></td>
-                            <td><?php echo $order["username"]?></td>
-                            <td>Order Created at <?php echo $order["statusdatetime"]?></td>
-                        </tr>
-                    <?php
-                    $count++;
-                    endforeach;
-                  ?>
-                </tbody>
-              </table>
+                <div class="panel panel-default">
+                  <div class="panel-heading">List Item</div>
+                  <div class="panel-body">
+                     <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>SKU</th>
+                            <th>Name</th>
+                            <th>Desc</th>
+                            <th>Price</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                            foreach($items as $item):
+                            ?>
+                                <tr>
+                                    <td><?php echo $item["id"]?></td>
+                                    <td><?php echo $item["sku"]?></td>
+                                    <td><?php echo $item["name"]?></td>
+                                    <td><?php echo $item["description"]?></td>
+                                    <td><?php echo $item["price"]?></td>
+                                    <td><button data-id-item="<?php echo $item["id"]?>" class="btn btn-success">Order</button></td>
+                                </tr>
+                            <?php
+                            endforeach;
+                          ?>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+
+            
+              <div class="panel panel-default">
+                  <div class="panel-heading">Order List</div>
+                  <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Item Name</th>
+                            <th>Driver</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                            $count = 1;
+                            foreach($orders as $order):
+                            ?>
+                                <tr>
+                                    <td><?php echo $count?></td>
+                                    <td><?php echo $order["name"]?></td>
+                                    <td><?php echo $order["username"]?></td>
+                                    <td>Order Created at <?php echo $order["statusdatetime"]?></td>
+                                </tr>
+                            <?php
+                            $count++;
+                            endforeach;
+                          ?>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>             
             </div>
         </div>  
         <script>

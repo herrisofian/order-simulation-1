@@ -58,6 +58,8 @@ $route['API'] = 'Rest_server';
 // USER API ROUTES
 $route['api/user/login'] = 'users/Users/user_login';
 $route['api/user/get'] = 'users/Users/user_fetch';
+// DRIVER API ROUTES
+$route['api/driver/login'] = 'drivers/Drivers/driver_login';
 
 // ITEM API ROUTES
 $route['api/products/get'] = 'products/Products/index';
@@ -65,3 +67,4 @@ $route['api/products/get'] = 'products/Products/index';
 // ORDER API ROUTES
 $route['api/orders/post'] = 'orders/Orders/order';
 $route['api/ordershistory/post'] = 'orders/Orders/order_history';
+

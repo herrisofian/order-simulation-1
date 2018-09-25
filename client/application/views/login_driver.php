@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rating/1.5.0/bootstrap-rating.min.css" integrity="sha256-kTpDjewvK4G725YuKc5ZRcqykMxAypjQWzS8bh/6YIw=" crossorigin="anonymous" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" />
-        <title>Home / Index</title>
+        <title>LOGIN DRIVER</title>
         
     </head>
     <body>
@@ -21,7 +21,7 @@
             <div class="container">
                 <form class="form-login">
                     <div class="form-group">
-                        <label for="usr">Username:</label>
+                        <label for="usr">Username Driver:</label>
                         <input type="text" class="form-control" id="username" name="username" required />
                     </div>
                     <div class="form-group">
@@ -43,16 +43,15 @@
         <script type="text/javascript">
            
                 $('#btnLogin').on("click", function(e){
-                    console.log(url);
                     e.preventDefault();
                     $.ajax({
                         type: "POST",
-                        url: url + "index.php/welcome/login",
+                        url: url + "index.php/driver/dologin",
                         dataType: "json",
                         data: $('.form-login').serialize(),
                         success:function(response) {
                            if(response.status != 0){
-                               top.location.href= url+"index.php/orders";
+                               top.location.href= url+"index.php/driver/orders";
                            }
                            else{
                                alert('Username atau password salah');

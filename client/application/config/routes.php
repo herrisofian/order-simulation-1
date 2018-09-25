@@ -54,3 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['orders'] = 'welcome/getOrders';
+$route['driver/login'] = 'driver';
+$route['driver/dologin'] = 'driver/login';
+$route['driver/orders'] = 'driver/getOrders';
