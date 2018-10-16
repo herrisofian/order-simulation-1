@@ -10,6 +10,8 @@ class Welcome extends CI_Controller {
     }
 	public function index()
 	{
+        echo 'aaaaa';
+        exit;
 		$this->load->view('login');
 	}
     public function login(){
